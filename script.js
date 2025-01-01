@@ -35,7 +35,7 @@ function start() {
     let health = 100;
     let level = 1;
     let currentNpc = null;
-    const apiKey = 'YOUR_API_KEY'; // Замените на свой API-ключ
+    const apiKey = 'AIzaSyA5no7eaoIrfGY4-tZgGqbQJf-JDvOL9C4'; // Замените на свой API-ключ
     const apiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=' + apiKey;
 
     const mapWidth = 200;
