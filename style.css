@@ -1,0 +1,144 @@
+body {
+    font-family: monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+}
+
+.game-container {
+    display: flex;
+    border: 2px solid #333;
+    width: 800px;
+    height: 600px;
+    overflow: hidden; /* Для камеры */
+}
+
+.game-area {
+    width: 600px;
+    height: 600px;
+    background-color: #252526;
+    position: relative;
+    overflow: hidden;
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+.layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    white-space: pre; /* Важно для символьной графики */
+}
+
+#ground-layer {
+    z-index: 1;
+}
+
+#object-layer {
+    z-index: 2;
+}
+
+#entity-layer {
+    z-index: 3;
+}
+
+#interaction-layer {
+    z-index: 4;
+}
+
+.player {
+    color: #569cd6; /* Синий цвет */
+}
+
+.npc {
+    color: #4ec9b0; /* Зеленый цвет */
+}
+
+.tree {
+    color: #6a9955; /* Зеленый цвет для деревьев */
+}
+
+.rock {
+    color: #999; /* Серый цвет для камней */
+}
+
+.mountain {
+    color: #a67354; /* Коричневый цвет для гор */
+}
+
+.road {
+    color: #808080; /* Серый цвет для дорог */
+}
+
+.interaction-area {
+    border: 1px dashed #aaa;
+    position: absolute;
+}
+
+.interaction-item {
+    position: absolute;
+    color: #fff;
+    cursor: pointer;
+}
+
+.ui {
+    width: 200px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #333;
+}
+
+#stats {
+    margin-bottom: 10px;
+}
+
+/* Модальное окно */
+.ui-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5; /* Самый верхний слой */
+    pointer-events: none; /* Чтобы не мешал кликам на нижних слоях */
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 6; /* Модальное окно поверх ui-layer */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    pointer-events: auto; /* Включаем клики для модального окна */
+}
+
+.modal-content {
+    background-color: #252526;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#dialogue-text {
+    white-space: pre-wrap;
+}
