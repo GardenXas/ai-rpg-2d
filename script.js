@@ -6,7 +6,11 @@ let villageStructure;
 fetch(villageUrl)
     .then(response => response.text())
     .then(text => {
-        const module = eval(text);
+        // Создаем функцию из загруженного кода
+        const module = new Function(`
+            ${text}
+            return { default: villageStructure };
+        `)();
         villageStructure = module.default;
         start();
     })
