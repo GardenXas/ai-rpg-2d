@@ -6,13 +6,25 @@ let villageStructure;
 fetch(villageUrl)
     .then(response => response.text())
     .then(text => {
-        // Создаем функцию из загруженного кода
-        const module = new Function(`
-            ${text}
-            return { default: villageStructure };
-        `)();
-        villageStructure = module.default;
-        start();
+        // Создаем blob URL для кода модуля
+        const blob = new Blob([text], { type: 'application/javascript' });
+        const blobURL = URL.createObjectURL(blob);
+
+        // Загружаем модуль динамически
+        const script = document.createElement('script');
+        script.type = 'module';
+        script.src = blobURL;
+        document.head.appendChild(script);
+
+        script.onload = async () => {
+            const module = await import(blobURL);
+            villageStructure = module.default;
+            start();
+        };
+
+        script.onerror = (error) => {
+            console.error('Error loading module:', error);
+        };
     })
     .catch(error => console.error('Error loading village:', error));
 
@@ -35,7 +47,7 @@ function start() {
     let health = 100;
     let level = 1;
     let currentNpc = null;
-    const apiKey = 'AIzaSyA5no7eaoIrfGY4-tZgGqbQJf-JDvOL9C4'; // Замените на свой API-ключ
+    const apiKey = 'YOUR_API_KEY'; // Замените на свой API-ключ
     const apiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=' + apiKey;
 
     const mapWidth = 200;
